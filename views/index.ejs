@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+<div class="container" style="margin-top: 100px">
+  <h1>Weather App </h1>
+  <div>
+    <p><a href="/convertCurrency">Convert</a></p>
+    <p><a href="/getIPInfo">IP Info</a></p>
+  </div>
+  <form action="/weather" method="get">
+    <input type="text" name="city" placeholder="Enter city name" />
+    <input type="text" name="countryCode" placeholder="Enter country code" />
+    <button type="submit">Get Weather</button>
+  </form>
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } else if (weather) { %>
+    <div class="card">
+
+      <p>
+        <i class="fas fa-thermometer-half"></i>
+        <%= convertToFahrenheit(weather.main.temp) %>&deg;F
+      </p>
+
+      <p>
+        <i class="fas fa-thermometer-half"></i>
+        <%= convertToCelsius(weather.main.temp) %>&deg;C
+      </p>
+      <p>
+        <i class="fas fa-cloud"></i>
+        <%=weather.weather[0].main%>
+      </p>
+      <p>
+        <i class="fas fa-map-marker-alt"></i>
+        <%=weather.name%>, <%=weather.sys.country%>
+      </p>
+      <p>
+        <i class="fas fa-globe"></i>
+        Latitude: <%=weather.coord.lat%>, Longitude: <%=weather.coord.lon%>
+      </p>
+
+      <p>
+        <i class="fas fa-temperature-low"></i>
+        Feels Like: <%= convertToFahrenheit(weather.main.feels_like) %>&deg;F / <%= convertToCelsius(weather.main.feels_like) %>&deg;C
+      </p>
+      <p>
+        <i class="fas fa-tint"></i>
+        Humidity: <%=weather.main.humidity%>%
+      </p>
+      <p>
+        <i class="fas fa-tachometer-alt"></i>
+        Pressure: <%=weather.main.pressure%> hPa
+      </p>
+      <p>
+        <i class="fas fa-wind"></i>
+        Wind Speed: <%=weather.wind.speed%> m/s
+      </p>
+
+      <% if (weather.rain && weather.rain['1h']) { %>
+      <p>
+        <i class="fas fa-umbrella"></i>
+        Rain (last 1 hour): <%=weather.rain['1h']%> mm
+      </p>
+      <% } else { %>
+        <p>No rain data available for the last 1 hour</p>
+      <% } %>
+
+      <div id="map" style="height: 300px;"></div>
+
+
+      <script>
+
+        var mymap = L.map('map').setView([<%=lat%>, <%=lon%>], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(mymap);
+
+        <% if (weather && weather.name && weather.sys && weather.sys.country) { %>
+        L.marker([<%=lat%>, <%=lon%>]).addTo(mymap)
+                .bindPopup('<%=weather.name%>, <%=weather.sys.country%>')
+                .openPopup();
+        <% } %>
+      </script>
+
+
+
+
+    </div>
+  <% } %>
+</div>
+<% function convertToFahrenheit(fahrenheit) { %>
+  <%= Math.round(fahrenheit) %>
+<% } %>
+<% function convertToCelsius(fahrenheit) { %>
+  <%= Math.round((fahrenheit - 32) * 5 / 9) %>
+<% } %>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Information</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>IP Information</h1>
+    <form action="/getIPInfo" method="get">
+        <label for="ipAddress">Enter IP Address:</label>
+        <input type="text" id="ipAddress" name="ip" placeholder="Enter IP address" required>
+        <button type="submit">Get IP Information</button>
+    </form>
+    <% if (error) { %>
+        <p class="error"><%= error %></p>
+    <% } else if (ipInfo) { %>
+        <p>IP Address: <%= ipInfo.ip %></p>
+        <p>Country: <%= ipInfo.country %></p>
+        <p>Region: <%= ipInfo.region %></p>
+        <p>City: <%= ipInfo.city %></p>
+    <% } %>
+    <p><a href="/">Go back to Weather App</a></p>
+</div>
+
+</body>
+</html>

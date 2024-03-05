@@ -1,0 +1,79 @@
+<!-- currencyConversion.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Conversion</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <!-- Add your stylesheets and scripts as needed -->
+</head>
+<body>
+<div class="container" style="margin-top: 100px">
+    <h1>Currency Conversion</h1>
+    <form action="/convertCurrency" method="get">
+        <label for="fromCurrency">From Currency:</label>
+        <select id="fromCurrency" name="fromCurrency" required>
+            <option value="SGD">SGD</option>
+            <option value="MYR">MYR</option>
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+            <option value="AUD">AUD</option>
+            <option value="JPY">JPY</option>
+            <option value="CNH">CNH</option>
+            <option value="HKD">HKD</option>
+            <option value="CAD">CAD</option>
+            <option value="INR">INR</option>
+            <option value="DKK">DKK</option>
+            <option value="GBP">GBP</option>
+            <option value="RUB">RUB</option>
+            <option value="NZD">NZD</option>
+            <option value="MXN">MXN</option>
+            <option value="IDR">IDR</option>
+            <option value="TWD">TWD</option>
+            <option value="THB">THB</option>
+            <option value="VND">VND</option>
+        </select>
+
+        <label for="toCurrency">To Currency:</label>
+        <select id="toCurrency" name="toCurrency" required>
+            <option value="SGD">SGD</option>
+            <option value="MYR">MYR</option>
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+            <option value="AUD">AUD</option>
+            <option value="JPY">JPY</option>
+            <option value="CNH">CNH</option>
+            <option value="HKD">HKD</option>
+            <option value="CAD">CAD</option>
+            <option value="INR">INR</option>
+            <option value="DKK">DKK</option>
+            <option value="GBP">GBP</option>
+            <option value="RUB">RUB</option>
+            <option value="NZD">NZD</option>
+            <option value="MXN">MXN</option>
+            <option value="IDR">IDR</option>
+            <option value="TWD">TWD</option>
+            <option value="THB">THB</option>
+            <option value="VND">VND</option>
+        </select>
+
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" placeholder="Enter amount" required />
+
+        <button type="submit">Convert Currency</button>
+    </form>
+
+    <% if (error) { %>
+        <p class="error"><%= error %></p>
+    <% } else if (convertedResult) { %>
+        <p>Converted Result: <%= convertedResult %></p>
+    <% } %>
+    <p><a href="/">Go back to Weather App</a></p>
+
+
+</div>
+
+</body>
+</html>

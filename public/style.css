@@ -1,0 +1,133 @@
+/* Global Styles */
+:root {
+  --primary-color: #007bff;
+  --primary-color-hover: #0056b3;
+  --error-color: #ff6b6b;
+  --background-color: #EAEAEA;
+  --text-color: #333;
+  --text-color-secondary: #555;
+  --container-bg: #FFF;
+  --footer-bg: #333;
+  --footer-text-color: #FFF;
+  --border-radius: 15px;
+  --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--background-color) url("https://4kwallpapers.com/images/walls/thumbs_3t/5714.jpg") no-repeat center/cover;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 800px;
+  width: 90%;
+  text-align: center;
+  padding: 40px;
+  background-color: var(--container-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* Typography */
+h1, h2, p, a, label {
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 2rem; /* Responsive font size */
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.375rem;
+}
+
+p, label, a {
+  font-size: 1rem;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Form Elements */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="text"], select, button[type="submit"] {
+  padding: 15px;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  outline-color: var(--primary-color);
+}
+
+button[type="submit"] {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--primary-color-hover);
+  transform: scale(1.05);
+}
+
+/* Error Styling */
+.error {
+  color: var(--error-color);
+}
+
+/* Layout Adjustments */
+.news-section, .exchange-rates-section {
+  margin-top: 30px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  color: var(--text-color-secondary);
+}
+
+#map {
+  margin-top: 20px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+
+
+/* Responsive Design */
+@media only screen and (max-width: 600px) {
+  .container, h1, label {
+    padding: 20px;
+    font-size: smaller; /* Adjust based on specific needs */
+  }
+
+  form {
+    align-items: stretch;
+  }
+}
